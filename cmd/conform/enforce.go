@@ -28,7 +28,9 @@ var enforceCmd = &cobra.Command{
 		cmd.SilenceUsage = true
 
 		reporter := cmd.Flags().Lookup("reporter").Value.String()
-		e, err := enforcer.New(reporter)
+		configPath := cmd.Flags().Lookup("config").Value.String()
+
+		e, err := enforcer.New(reporter, configPath)
 		if err != nil {
 			return fmt.Errorf("failed to create enforcer: %w", err)
 		}

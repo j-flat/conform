@@ -11,6 +11,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var configPath string
+
 // rootCmd represents the base command when called without any subcommands.
 var rootCmd = &cobra.Command{
 	Use:   "conform",
@@ -21,6 +23,7 @@ var rootCmd = &cobra.Command{
 // Execute adds all child commands to the root command sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
+	rootCmd.PersistentFlags().StringVarP(&configPath, "config", "c", ".conform.yaml", "Specify path to .conform.yaml")
 	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)
 	}
